@@ -139,3 +139,47 @@ button:disabled{cursor:not-allowed;opacity:.65;transform:none!important}
 .shell.dark .progress-track{background:#34443a}
 .shell.dark .tag{background:#f3f2e8;color:#24382a}
 @media(max-width:800px){.sidebar{height:100dvh;padding-bottom:max(18px,env(safe-area-inset-bottom))}.sidebar.open{overscroll-behavior-y:contain;touch-action:pan-y}}
+
+/* Compact, readable type scale: keep the dashboard dense without shrinking its text. */
+:root{--text-label:clamp(10.5px,.78vw,11.5px);--text-support:clamp(12px,.9vw,13.5px);--text-control:clamp(13px,.96vw,14.5px)}
+body{font-size:15px;line-height:1.5}
+.shell{font-size:15px;line-height:1.5}
+.shell .section-kicker,.shell .workspace-label,.shell .side-heading,.shell .stat-label,.shell .budget-line>span,.shell .list-budget span,.shell .budget-total>span,.shell .eyebrow{font-size:var(--text-label);line-height:1.4;letter-spacing:.08em}
+.shell .nav-item,.shell .trip-nav{font-size:14px;line-height:1.35}
+.shell .nav-count,.shell .trip-date-short,.shell .profile-text span,.shell .collaborator-row small,.shell .collaborator-list>header>span{font-size:11px;line-height:1.4}
+.shell .profile-text strong,.shell .collaborator-row b{font-size:13px;line-height:1.35}
+.shell .subhead,.shell .help-card p,.shell .help-card button,.shell .day-head b,.shell .activity b,.shell .stat-note,.shell .spent-label,.shell .trip-card-meta,.shell .country-label,.shell .add-trip-card>span:not(.add-circle),.shell .add-trip-card em,.shell .inspiration-copy p,.shell .assistant-panel>p,.shell .assistant-page>p,.shell .assistant-answer,.shell .empty-state p,.shell .budget-hero p,.shell .budget-hint span,.shell .explore-feature p,.shell .explore-note,.shell .expense-copy b,.shell .expense-copy span,.shell .expense-empty,.shell .itinerary-editor-heading p,.shell .itinerary-date b,.shell .itinerary-date span,.shell .itinerary-entry time,.shell .itinerary-entry>div:nth-child(3) b,.shell .itinerary-entry small,.shell .day-empty,.shell .weather-card p,.shell .weather-result strong,.shell .weather-result span,.shell .weather-detail,.shell .packing-heading p,.shell .packing-progress b,.shell .packing-progress span,.shell .packing-category>header>span,.shell .packing-item,.shell .essential-notice,.shell .contact-main a,.shell .contact-main p,.shell .reminder-limit,.shell .reminder-card b,.shell .reminder-card span,.shell .draft-panel>div:first-child small,.shell .draft-error,.shell .vault-heading p,.shell .vault-error,.shell .journal-card time,.shell .journal-card p,.shell .vault-empty p,.shell .vault-note,.shell .vault-security,.shell .vault-setup,.shell .document-copy b,.shell .document-copy small,.shell .profile-settings-heading p,.shell .profile-settings-fields small,.shell .profile-settings-note,.shell .profile-error,.shell .appearance-card p,.shell .account-card p,.shell .collaboration-heading p,.shell .collaboration-note,.shell .invite-form p,.shell .invite-link small,.shell .collaboration-footnote,.shell .collaboration-error,.shell .collaboration-empty p,.shell .journal-photo-picker,.shell .journal-photo-frame span,.shell .data-export-card p,.shell .map-heading p,.shell .map-setup span,.shell .map-error,.shell .map-result-copy b,.shell .map-result-copy span,.shell .saved-place-main b,.shell .saved-place-main small,.shell .saved-empty,.shell .map-attribution-note,.shell .offline-note{font-size:var(--text-support);line-height:1.5}
+.shell .quiet-button,.shell .text-link,.shell .spent-label button,.shell .add-activity,.shell .prompt-chips button,.shell .inspiration-photo button,.shell .assistant-suggestions button,.shell .itinerary-entry .quiet-button,.shell .reminder-actions .quiet-button,.shell .document-card>.quiet-button,.shell .map-location-pill,.shell .map-result .quiet-button{font-size:var(--text-label);line-height:1.35}
+.shell .trip-modal label,.shell .auth-card form>label,.shell .profile-settings-fields label,.shell .invite-form label,.shell .draft-controls label,.shell .vault-fields label,.shell .vault-body-label{font-size:var(--text-label);line-height:1.4}
+.shell .trip-modal label input,.shell .trip-modal label select,.shell .trip-modal label textarea,.shell .profile-settings-fields input,.shell .invite-form input,.shell .invite-form select,.shell .invite-link input,.shell .auth-input input,.shell .map-search input,.shell .ask-form input,.shell .member-role-select{font-size:var(--text-control);line-height:1.4}
+.shell .quiet-button,.shell .icon-button,.shell .packing-check,.shell .delete-trip{min-height:38px}
+.shell .nav-item,.shell .trip-nav{min-height:42px}
+.shell .spent-label,.shell .trip-card-meta{flex-wrap:wrap;row-gap:5px}
+.shell .profile-text,.shell .trip-card-meta,.shell .map-result-copy,.shell .saved-place-main>span,.shell .document-copy{min-width:0}
+.shell :is(.subhead,.stat-note,.spent-label,.trip-card-meta,.day-head span,.activity span,.map-result-copy span,.saved-place-main small,.document-copy small,.profile-settings-note,.data-export-card p,.collaboration-note,.collaboration-footnote){overflow-wrap:anywhere}
+.shell .trip-modal,.shell .panel,.shell .destination-card,.shell .collaborator-row,.shell .document-card{min-width:0}
+.shell .tag,.shell .budget-total small,.shell .category-name small,.shell .budget-hint b,.shell .budget-hint span,.shell .inspiration-photo span,.shell .explore-feature>div>span,.shell .trip-modal>small,.shell .weather-detail small,.shell .weather-provider,.shell .weather-disclaimer,.shell .weather-error,.shell .draft-panel>div:first-child small,.shell .vault-empty p,.shell .document-copy small,.shell .role-pill,.shell .collaborator-empty p,.shell .journal-photo-picker small,.shell .map-setup code,.shell .leaflet-popup-content,.shell .map-loading,.shell .map-result .quiet-button{font-size:var(--text-support);line-height:1.45}
+.auth-card>p,.auth-card form>label,.auth-links,.auth-input input,.auth-message{font-size:14px;line-height:1.5}
+.auth-privacy,.auth-visual-credit{font-size:11px}
+@media(max-width:800px){
+ :root{--text-label:11px;--text-support:13px;--text-control:14px}
+ .shell .content{padding-inline:clamp(14px,4vw,28px)}
+ .shell .welcome-row h1{font-size:clamp(24px,5vw,29px);line-height:1.15}
+ .shell .card-image{height:clamp(165px,34vw,205px)}
+}
+@media(max-width:560px){
+ :root{--text-label:11px;--text-support:12.5px;--text-control:14px}
+ .shell .welcome-row h1{font-size:clamp(22px,6vw,27px)}
+ .shell .content{padding-inline:14px}
+ .shell .section-heading h2,.shell .panel-heading h2{font-size:19px}
+ .shell .stat-number{font-size:clamp(21px,6vw,24px)}
+ .shell .map-result{align-items:center}
+ .shell .map-result .quiet-button{min-height:38px;padding:7px 9px}
+ .shell .profile-settings-card{gap:12px}
+}
+@media(max-width:380px){
+ :root{--text-label:10.5px;--text-support:12px;--text-control:14px}
+ .shell .content{padding-inline:12px}
+ .shell .trip-card-meta{font-size:11px}
+ .shell .section-heading h2,.shell .panel-heading h2{font-size:18px}
+}
