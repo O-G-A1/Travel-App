@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { FileText, ImagePlus, LoaderCircle, Plus, Trash2, Upload, X } from 'lucide-react';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { createId } from './create-id';
 
 type JournalRow = { id: string; trip_id?: string; entry_date: string; title: string | null; body: string | null; author_id?: string; photo_paths?: string[] };
 type DocumentRow = { id: string; trip_id: string; uploaded_by?: string; storage_path: string; file_name: string; content_type: string | null; created_at: string };
@@ -92,7 +93,7 @@ export default function TripVault({ tripId, tripName, client, userId, mode }: Pr
         const existingPaths = entries.find((entry) => entry.id === editing)?.photo_paths || [];
         for (const file of photos) {
           const extension = file.type === 'image/jpeg' ? 'jpg' : file.type.split('/')[1];
-          const path = `${tripId}/journal/${crypto.randomUUID()}.${extension}`;
+          const path = `${tripId}/journal/${createId()}.${extension}`;
           const { error: uploadError } = await client.storage.from(bucket).upload(path, file, { contentType: file.type, upsert: false });
           if (uploadError) throw new Error('Could not upload a journal photo. Check the private trip storage setup.');
           newlyUploadedPaths.push(path);
@@ -106,7 +107,7 @@ export default function TripVault({ tripId, tripName, client, userId, mode }: Pr
         setEntries((current) => editing ? current.map((entry) => entry.id === editing ? data as JournalRow : entry) : [data as JournalRow, ...current]);
       } else {
         if (photos.length) throw new Error('Journal photo storage needs a connected Supabase account.');
-        const item: JournalRow = { id: editing || crypto.randomUUID(), ...draft };
+        const item: JournalRow = { id: editing || createId(), ...draft };
         setEntries((current) => editing ? current.map((entry) => entry.id === editing ? item : entry) : [item, ...current]);
       }
       setTitle(''); setBody(''); setPhotos([]); setEditing(null); setEntryDate(new Date().toISOString().slice(0, 10));
@@ -138,7 +139,7 @@ export default function TripVault({ tripId, tripName, client, userId, mode }: Pr
     if (file.size <= 0 || file.size > maxFileSize) { setError('Files must be smaller than 15 MB.'); return; }
     setSaving(true); setError('');
     const safeName = file.name.normalize('NFKC').replace(/[^\p{L}\p{N}._-]+/gu, '_').slice(-120) || 'travel-document';
-    const path = `${tripId}/${crypto.randomUUID()}-${safeName}`;
+    const path = `${tripId}/${createId()}-${safeName}`;
     try {
       const { error: uploadError } = await client.storage.from(bucket).upload(path, file, { contentType: file.type, upsert: false });
       if (uploadError) throw new Error('Upload failed. Confirm that migration 006 created the private document bucket.');
