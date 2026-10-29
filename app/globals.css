@@ -183,3 +183,122 @@ body{font-size:15px;line-height:1.5}
  .shell .trip-card-meta{font-size:11px}
  .shell .section-heading h2,.shell .panel-heading h2{font-size:18px}
 }
+
+/* Mobile travel workspace: quick access, readable controls, and safer-area spacing. */
+.mobile-bottom-nav{display:none}
+@media(max-width:800px){
+ .shell .topbar{position:sticky;top:0;z-index:3;min-height:60px;height:auto;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+ .shell .sidebar-backdrop{z-index:7}
+ .shell .sidebar{z-index:8}
+ .shell .main-area{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+ .shell .mobile-bottom-nav{position:fixed;inset:auto 0 0;z-index:6;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;padding:7px 8px calc(7px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:color-mix(in srgb,var(--white) 94%,transparent);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 -8px 24px rgba(23,37,29,.07)}
+ .shell .mobile-bottom-nav button{min-width:0;min-height:52px;display:grid;place-content:center;justify-items:center;gap:3px;border:0;border-radius:12px;background:transparent;color:var(--sub);font-size:11px;font-weight:600;line-height:1.2;-webkit-tap-highlight-color:transparent}
+ .shell .mobile-bottom-nav button.active{color:var(--green);background:color-mix(in srgb,var(--green) 9%,var(--white))}
+ .shell.dark .mobile-bottom-nav{box-shadow:0 -8px 24px rgba(0,0,0,.2)}
+ .shell .sidebar{width:min(300px,86vw)}
+ .shell .content{padding-bottom:24px}
+ .shell .section-heading{align-items:center;gap:10px}
+ .shell .section-heading h2{line-height:1.25}
+ .shell .weather-card{padding:18px}
+ .shell .weather-card-heading{align-items:flex-start}
+ .shell .weather-card-heading>div{min-width:0}
+ .shell .weather-card h2{font-size:19px;line-height:1.3}
+ .shell .weather-card .quiet-button{min-height:44px;white-space:nowrap}
+ .shell .weather-result{align-items:flex-start;flex-wrap:wrap}
+ .shell .weather-result>div:nth-of-type(1){min-width:min(100%,190px)}
+ .shell .weather-detail{margin-left:62px;grid-template-columns:1fr 1fr;gap:10px}
+ .shell .weather-provider{flex-basis:100%}
+ .shell .weather-disclaimer{font-size:12px;line-height:1.55}
+ .shell .trip-modal label{font-size:11px}
+ .shell :is(.quiet-button,.icon-button,.delete-trip,.packing-check){min-height:44px}
+}
+@media(max-width:560px){
+ .shell .topbar{padding-inline:12px;min-height:58px}
+ .shell .crumb{min-width:0;max-width:42vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+ .shell .crumb span{padding-inline:4px}
+ .shell .top-actions{gap:7px}
+ .shell .icon-button{width:44px;height:44px;min-width:44px}
+ .shell .avatar.small{width:32px;height:32px;flex:none}
+ .shell .content{padding-top:18px;padding-inline:14px}
+ .shell .welcome-row{align-items:center;gap:10px;margin-bottom:21px}
+ .shell .welcome-row h1{font-size:clamp(23px,6vw,28px);line-height:1.16}
+ .shell .welcome-row>.primary-button{width:44px;height:44px}
+ .shell .subhead{font-size:13px;line-height:1.5}
+ .shell .stats-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+ .shell .stat-card{min-width:0;min-height:116px;padding:12px 10px;display:flex;flex-direction:column;align-items:flex-start}
+ .shell .stat-label{font-size:10px;line-height:1.25;letter-spacing:.055em}
+ .shell .stat-number{font-size:clamp(19px,5.4vw,23px);line-height:1.15}
+ .shell .stat-number span{font-size:11px;line-height:1.2}
+ .shell .stat-note{font-size:11px;line-height:1.35}
+ .shell .section-heading{margin:25px 0 12px}
+ .shell .section-heading h2,.shell .panel-heading h2{font-size:20px}
+ .shell .text-link{font-size:12px;min-height:40px}
+ .shell .trip-grid{gap:9px}
+ .shell .card-image{height:clamp(155px,45vw,195px)}
+ .shell .image-overlay h3{font-size:21px;line-height:1.15}
+ .shell .country-label,.shell .trip-card-meta,.shell .trip-card-meta span{font-size:11px;line-height:1.35}
+ .shell .tag{font-size:10px;line-height:1.2}
+ .shell .card-footer{padding:11px 10px}
+ .shell .budget-line>span,.shell .spent-label,.shell .spent-label button{font-size:11px}
+ .shell .lower-grid{gap:12px;margin-top:16px}
+ .shell .itinerary-panel{padding:16px 14px}
+ .shell .day-head b,.shell .activity b{font-size:13px;line-height:1.35}
+ .shell .day-head span,.shell .activity span,.shell .time{font-size:12px;line-height:1.4}
+ .shell .timeline-item{grid-template-columns:44px 27px minmax(0,1fr) 38px;gap:6px;min-height:50px}
+ .shell .timeline-item:not(:last-child):before{left:51px}
+ .shell .more{width:38px;height:42px;display:grid;place-items:center}
+ .shell .add-activity{min-height:44px;margin-left:48px;font-size:12px}
+ .shell .assistant-panel{padding:19px 16px}
+ .shell .assistant-panel>p,.shell .assistant-page>p{font-size:13px;line-height:1.55}
+ .shell .ask-form{height:46px}
+ .shell .ask-form input{font-size:14px}
+ .shell .ask-form button{width:46px}
+ .shell .prompt-chips{gap:7px}
+ .shell .prompt-chips button{min-height:40px;padding:8px 11px;font-size:12px}
+ .shell .assistant-answer{font-size:13px;line-height:1.55}
+ .shell .inspiration{margin-top:18px}
+ .shell .inspiration-copy h2{font-size:24px;line-height:1.2}
+ .shell .inspiration-copy p{font-size:13px;line-height:1.55}
+ .shell .inspiration-copy .quiet-button{min-height:44px;font-size:12px}
+ .shell footer{font-size:12px;line-height:1.5;padding-bottom:8px}
+ .shell .list-trip{gap:10px;padding:11px}
+ .shell .list-photo{width:78px;height:68px;flex:none}
+ .shell .list-trip-main{min-width:0}
+ .shell .list-trip-main h2{font-size:18px;line-height:1.2}
+ .shell .list-trip-main>span:last-child{font-size:12px;line-height:1.4}
+ .shell .list-budget span{font-size:10px}
+ .shell .list-budget b{font-size:16px}
+ .shell .budget-hero h2{font-size:26px;line-height:1.2}
+ .shell .budget-total strong{font-size:28px}
+ .shell .category-card{min-height:78px;padding:12px;gap:9px}
+ .shell .category-name{font-size:12px;line-height:1.3}
+ .shell .category-name small{font-size:11px;line-height:1.35}
+ .shell .explore-feature{height:min(68vh,490px);min-height:370px}
+ .shell .explore-feature>div{left:20px;right:16px;bottom:22px}
+ .shell .explore-feature h2{font-size:clamp(30px,8vw,38px);line-height:1.12}
+ .shell .explore-feature p,.shell .explore-note{font-size:13px;line-height:1.5}
+ .shell .assistant-page{padding:22px 18px}
+ .shell .assistant-page h2{font-size:28px}
+ .shell .assistant-suggestions button{min-height:48px;font-size:13px}
+ .shell .trip-modal{width:100%;max-height:calc(100dvh - 12px);border-radius:20px 20px 0 0;padding:25px 20px calc(22px + env(safe-area-inset-bottom))}
+ .shell .modal-backdrop{place-items:end center;padding:0}
+ .shell .trip-modal h2{font-size:27px;line-height:1.2}
+ .shell .trip-modal label input,.shell .trip-modal label select,.shell .trip-modal label textarea{height:46px;font-size:16px}
+ .shell .trip-modal textarea{min-height:90px}
+ .shell .trip-modal .primary-button{min-height:48px}
+ .shell .map-search{min-height:50px}
+ .shell .map-search input{font-size:16px}
+}
+@media(max-width:380px){
+ .shell .content{padding-inline:12px}
+ .shell .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .shell .stat-card{min-height:104px}
+ .shell .welcome-row h1{font-size:23px}
+ .shell .trip-grid{grid-template-columns:1fr}
+ .shell .card-image{height:210px}
+ .shell .weather-card{padding:15px}
+ .shell .weather-card-heading{flex-direction:column}
+ .shell .weather-card-heading .quiet-button{align-self:flex-start}
+ .shell .date-fields{gap:8px}
+ .shell .trip-modal{padding-inline:16px}
+}
