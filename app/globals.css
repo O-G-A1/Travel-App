@@ -101,3 +101,41 @@ button:disabled{cursor:not-allowed;opacity:.65;transform:none!important}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* Higher contrast travel palette and independent drawer scrolling. */
+:root{--paper:#f2f0e9;--white:#fffefa;--ink:#17251d;--sub:#4d5c52;--line:#cbd4ca;--green:#174b36;--accent:#a76e35;--pale:#e1ebe2;--sand:#ece4d8;--shadow:0 14px 36px rgba(23,37,29,.12)}
+.shell{--paper:#f2f0e9;--white:#fffefa;--ink:#17251d;--sub:#4d5c52;--line:#cbd4ca;--green:#174b36;--accent:#a76e35;background:var(--paper)}
+.shell.dark{color-scheme:dark;--paper:#111a15;--white:#1b2921;--ink:#f4f5f0;--sub:#bdc9c0;--line:#405147;--green:#9bc9ab;--accent:#e1b57b}
+.sidebar{overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#a7b5a8 transparent}
+.sidebar.open{touch-action:pan-y}
+.sidebar-backdrop{touch-action:none}
+.shell .sidebar{background:#faf9f4;border-color:#cbd4ca}
+.shell.dark .sidebar{background:#17221b;border-color:#405147}
+.shell .workspace-label,.shell .side-heading,.shell .section-kicker,.shell .stat-label,.shell .budget-line>span,.shell .list-budget span,.shell .budget-total>span{color:#506353}
+.shell .nav-item,.shell .trip-nav{color:#44564a}
+.shell .nav-item:hover,.shell .nav-item.selected{background:#dce8dd;color:#174b36}
+.shell .trip-nav:hover,.shell .trip-active{background:#e2e9df;color:#17251d}
+.shell .crumb,.shell .crumb strong,.shell .eyebrow,.shell .subhead,.shell .muted-count,.shell .stat-note,.shell .spent-label,.shell .trip-date-short,.shell .activity span,.shell .day-head span,.shell .time,.shell .profile-text span{color:#536158}
+.shell .quiet-button,.shell .stat-number span,.shell .map-attribution-note,.shell .packing-note,.shell .profile-settings-note,.shell .add-trip-card>span:not(.add-circle),.shell .map-heading p{color:#526157}
+.shell .brand-dot,.shell .eyebrow span,.shell .map-location-pill{color:var(--accent)}
+.shell .text-link,.shell .spent-label button,.shell .help-card button,.shell .add-trip-card em{color:#174b36}
+.shell .primary-button{background:#174b36;color:#fff;box-shadow:0 5px 14px rgba(23,75,54,.22)}
+.shell .primary-button:hover{background:#103d2b}
+.shell .stat-card,.shell .panel,.shell .destination-card{border-color:#d0d8ce;box-shadow:0 4px 14px rgba(26,43,32,.06)}
+.shell .avatar,.shell .profile-settings-avatar{background:#174b36;color:#fff;font-family:'DM Sans',sans-serif;font-weight:700}
+.shell.dark .avatar,.shell.dark .profile-settings-avatar{background:#b5d2b8;color:#14251a}
+.shell.dark .workspace-label,.shell.dark .side-heading,.shell.dark .section-kicker,.shell.dark .stat-label,.shell.dark .budget-line>span,.shell.dark .list-budget span,.shell.dark .budget-total>span{color:#c0d0c4}
+.shell.dark .nav-item,.shell.dark .trip-nav{color:#d0d9d1}
+.shell.dark .nav-item:hover,.shell.dark .nav-item.selected{background:#304638;color:#e6f2e8}
+.shell.dark .trip-nav:hover,.shell.dark .trip-active{background:#2c3c31;color:#f4f5f0}
+.shell.dark .crumb,.shell.dark .crumb strong,.shell.dark .eyebrow,.shell.dark .subhead,.shell.dark .muted-count,.shell.dark .stat-note,.shell.dark .spent-label,.shell.dark .trip-date-short,.shell.dark .activity span,.shell.dark .day-head span,.shell.dark .time,.shell.dark .profile-text span{color:#bdc9c0}
+.shell.dark .quiet-button,.shell.dark .stat-number span,.shell.dark .map-attribution-note,.shell.dark .packing-note,.shell.dark .profile-settings-note,.shell.dark .add-trip-card>span:not(.add-circle),.shell.dark .map-heading p{color:#c4d0c6}
+.shell.dark .brand-dot,.shell.dark .eyebrow span,.shell.dark .map-location-pill{color:var(--accent)}
+.shell.dark .text-link,.shell.dark .spent-label button,.shell.dark .help-card button,.shell.dark .add-trip-card em{color:#b6d3bb}
+.shell.dark .primary-button{background:#315e43;color:#fff}
+.shell.dark .primary-button:hover{background:#3b704f}
+.shell.dark .stat-card,.shell.dark .panel,.shell.dark .destination-card{border-color:#405147;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.shell.dark .day-head,.shell.dark .timeline-item:before{border-color:#405147;background-color:transparent}
+.shell.dark .progress-track{background:#34443a}
+.shell.dark .tag{background:#f3f2e8;color:#24382a}
+@media(max-width:800px){.sidebar{height:100dvh;padding-bottom:max(18px,env(safe-area-inset-bottom))}.sidebar.open{overscroll-behavior-y:contain;touch-action:pan-y}}
