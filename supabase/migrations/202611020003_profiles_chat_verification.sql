@@ -2,6 +2,7 @@
 alter table public.profiles add column if not exists account_type text not null default 'passenger' check(account_type in ('passenger','driver'));
 alter table public.profiles add column if not exists bio text check(char_length(coalesce(bio,'')) <= 500);
 alter table public.profiles add column if not exists home_state text check(char_length(coalesce(home_state,'')) <= 80);
+update public.profiles p set account_type='driver' where exists(select 1 from public.driver_profiles d where d.user_id=p.id);
 alter table public.profiles drop constraint if exists profiles_display_name_check;
 alter table public.profiles add constraint profiles_display_name_check check(char_length(coalesce(display_name,'')) <= 100);
 drop policy if exists profiles_read_own on public.profiles;
