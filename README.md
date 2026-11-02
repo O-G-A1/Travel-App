@@ -53,6 +53,14 @@ Apply `supabase/migrations/202611020001_marketplace_foundation.sql` after the ex
 
 The Journeys screen currently supports authenticated journey discovery, onboarding record creation, publishing form validation, passenger seat requests, and driver accept/decline and passenger cancellation workflows. Accepting reserves capacity atomically; direct edits to booking state are not granted to client roles. Publishing is intentionally unavailable until an operator/provider verifies driver identity, licence, and vehicle. No verification provider, admin review workflow, passenger/driver direct payment, payment gateway, GPS tracking, SMS/email notifications, or driver bank details are configured by this foundation. This release does not claim to monitor journeys or dispatch emergencies.
 
+## Travel community foundation
+
+Apply `supabase/migrations/202611020002_community_foundation.sql` after the marketplace migration. The signed-in workspace includes a Nigeria-focused Community feed with local travel tips, authenticated text posts, likes, comments, and follows. Without Supabase, the feed displays illustrative local-guide stories; these are not live user posts.
+
+Apply `supabase/migrations/202611020003_profiles_chat_verification.sql` after migration 002. Registration now offers passenger and driver account types; driver sign-up captures vehicle details and creates a pending vehicle record. Signed-in users can set a profile photo, browse and follow traveler profiles, start private one-to-one text chats, and submit an ID plus a face photo from Profile. Verification files use a private per-user storage path; phone numbers and vehicle plate numbers are excluded from public profile queries. The inbox refreshes messages every four seconds while open.
+
+Face-photo capture is not automated face verification. Submitted ID/selfie files are pending and currently visible only to their owner because the app has no reviewer roles or identity-provider callback configured. Drivers remain unable to publish rides until identity, driving licence, and vehicle verification are completed. Chat currently supports text only; no end-to-end encryption, voice/video calling, delivery push notifications, photo/video feed posts, or group chats are implemented. Do not collect real identity documents in a production pilot until reviewer access, retention/deletion rules, and an identity verification provider are configured.
+
 Production integrations to configure in later phases: a server-side identity/document verification provider, maps/geocoding and routing service, location update transport (typically authenticated realtime/WebSocket), push/email/SMS delivery, private media storage, and a subscription payment gateway. Provider secrets must stay server-side; never put payment or identity-provider secret keys in `NEXT_PUBLIC_*` variables. Supabase credentials enable persistence and authentication; without them, marketplace requests show a connection/sign-in state instead of sample inventory.
 
 ## Marketplace delivery roadmap
@@ -61,7 +69,7 @@ Production integrations to configure in later phases: a server-side identity/doc
 2. **Driver verification and operations:** admin role model and dashboard, secure document upload bucket, provider callbacks/webhooks, identity/licence/vehicle review queue, driver subscriptions, and auditable actions.
 3. **Payments and communications:** booking payment instructions visible only to accepted participants, confirmation/dispute flows, optional subscription checkout, and transactional notifications.
 4. **Journey safety:** route geometry and multiple-stop editing, consented live location with expiry, ETA updates, passenger/admin monitoring, journey sharing, and emergency/report escalation.
-5. **Social network:** profiles/follows, feed posts and media, likes/comments, groups, direct messaging, discovery, blocking, and content reporting/moderation.
+5. **Social network:** add moderated photo/video publishing, group chats, delivery notifications, media moderation, blocking/report controls, and message retention/deletion tools.
 6. **Launch hardening:** shared rate limits, observability, data export/deletion, migration/RLS integration tests, mobile-device QA, retention policies, and production deployment review.
 
 The existing project is a responsive web application; it is not a native iOS/Android app. This marketplace release has not yet implemented those later phases, and it has not been connected to a live Supabase project, so apply the migration and exercise policies with separate passenger/driver accounts before pilot use.
