@@ -1,6 +1,6 @@
 'use client';
 import { FormEvent, useState } from 'react';
-import { Compass, Eye, EyeOff, LoaderCircle, Mail, LockKeyhole, ArrowRight } from 'lucide-react';
+import { Compass, Eye, EyeOff, LoaderCircle, Mail, LockKeyhole, ArrowRight, CarFront } from 'lucide-react';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export default function AuthScreen({ client, appName }: { client: SupabaseClient; appName: string }) {
@@ -39,5 +39,5 @@ export default function AuthScreen({ client, appName }: { client: SupabaseClient
     {mode !== 'reset' && <label>Password<div className="auth-input"><LockKeyhole size={16}/><input required minLength={8} type={showPassword?'text':'password'} autoComplete={mode==='signin'?'current-password':'new-password'} value={password} onChange={e=>setPassword(e.target.value)} placeholder="At least 8 characters"/><button type="button" onClick={()=>setShowPassword(!showPassword)} aria-label={showPassword?'Hide password':'Show password'}>{showPassword?<EyeOff size={15}/>:<Eye size={15}/>}</button></div></label>}
     {error&&<div className="auth-message error" role="alert">{error}</div>}{message&&<div className="auth-message success" role="status">{message}</div>}
     <button className="primary-button auth-submit" disabled={busy}>{busy?<LoaderCircle size={16} className="spin"/>:null}{mode==='signin'?'Sign in':mode==='signup'?'Create account':'Send reset link'}{!busy&&<ArrowRight size={16}/>}</button>
-  </form><div className="auth-links">{mode==='signin'&&<button onClick={()=>{setMode('reset');setError('');setMessage('')}}>Forgot password?</button>}<span>{mode==='signin'?'New to Voyara?':mode==='signup'?'Already have an account?':'Remembered it?'}</span><button onClick={()=>{setMode(mode==='signin'?'signup':'signin');setError('');setMessage('')}}>{mode==='signin'?'Create an account':'Sign in'}</button></div><div className="auth-privacy">Your trip details stay private to your account.</div></div></section></main>;
+  </form><div className="auth-links">{mode==='signin'&&<button onClick={()=>{setMode('reset');setError('');setMessage('')}}>Forgot password?</button>}<span>{mode==='signin'?'New to Voyara?':mode==='signup'?'Already have an account?':'Remembered it?'}</span><button onClick={()=>{setMode(mode==='signin'?'signup':'signin');setError('');setMessage('')}}>{mode==='signin'?'Create an account':'Sign in'}</button></div><a className="auth-marketplace-link" href="/journeys"><CarFront size={16}/> Explore interstate & intrastate journeys <ArrowRight size={15}/></a><div className="auth-privacy">Your trip details stay private to your account.</div></div></section></main>;
 }

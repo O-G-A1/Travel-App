@@ -47,6 +47,25 @@ Open http://localhost:3000. Leave optional keys blank to use demo mode. `npm run
 
 The migrations enable RLS and scope records to trip owners and listed members. Saved places and emergency contacts are user-scoped. Collaboration uses seven-day, single-use invitation links restricted to the entered email; the owner shares the link manually because no email service is configured. Trip documents use a private bucket and short-lived signed URLs. No service-role access is used by the app.
 
+## Journey marketplace foundation
+
+Apply `supabase/migrations/202611020001_marketplace_foundation.sql` after the existing migrations. It is additive and leaves planner records intact. It creates driver onboarding status, vehicle records, intrastate/interstate journey listings, stops, passenger booking requests, reviews, user reports, and user blocks. RLS limits booking visibility to the passenger and journey driver; driver verification fields are protected from self-editing. A database function accepts bookings while reserving seat capacity atomically.
+
+The Journeys screen currently supports authenticated journey discovery, onboarding record creation, publishing form validation, passenger seat requests, and driver accept/decline and passenger cancellation workflows. Accepting reserves capacity atomically; direct edits to booking state are not granted to client roles. Publishing is intentionally unavailable until an operator/provider verifies driver identity, licence, and vehicle. No verification provider, admin review workflow, passenger/driver direct payment, payment gateway, GPS tracking, SMS/email notifications, or driver bank details are configured by this foundation. This release does not claim to monitor journeys or dispatch emergencies.
+
+Production integrations to configure in later phases: a server-side identity/document verification provider, maps/geocoding and routing service, location update transport (typically authenticated realtime/WebSocket), push/email/SMS delivery, private media storage, and a subscription payment gateway. Provider secrets must stay server-side; never put payment or identity-provider secret keys in `NEXT_PUBLIC_*` variables. Supabase credentials enable persistence and authentication; without them, marketplace requests show a connection/sign-in state instead of sample inventory.
+
+## Marketplace delivery roadmap
+
+1. **Platform/data foundation (this release):** additive marketplace tables, RLS, driver verification gates, journey discovery/publishing, seat requests, response/cancel actions, and migration/setup documentation.
+2. **Driver verification and operations:** admin role model and dashboard, secure document upload bucket, provider callbacks/webhooks, identity/licence/vehicle review queue, driver subscriptions, and auditable actions.
+3. **Payments and communications:** booking payment instructions visible only to accepted participants, confirmation/dispute flows, optional subscription checkout, and transactional notifications.
+4. **Journey safety:** route geometry and multiple-stop editing, consented live location with expiry, ETA updates, passenger/admin monitoring, journey sharing, and emergency/report escalation.
+5. **Social network:** profiles/follows, feed posts and media, likes/comments, groups, direct messaging, discovery, blocking, and content reporting/moderation.
+6. **Launch hardening:** shared rate limits, observability, data export/deletion, migration/RLS integration tests, mobile-device QA, retention policies, and production deployment review.
+
+The existing project is a responsive web application; it is not a native iOS/Android app. This marketplace release has not yet implemented those later phases, and it has not been connected to a live Supabase project, so apply the migration and exercise policies with separate passenger/driver accounts before pilot use.
+
 ## AI adapter
 
 The routes at `app/api/assistant/route.ts` and `app/api/itinerary/generate/route.ts` use a provider-independent OpenAI-compatible chat completions contract. They only call a provider when all three AI variables are set. The itinerary endpoint validates structured JSON and date bounds before it can be saved. Neither route calls live search or claims real-time results. Validate provider compatibility and privacy/data retention terms before sending user content to a provider.
